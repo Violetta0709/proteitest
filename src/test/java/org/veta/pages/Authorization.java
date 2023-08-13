@@ -3,7 +3,6 @@ package org.veta.pages;
 import com.codeborne.selenide.Condition;
 import lombok.Data;
 
-import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -32,14 +31,13 @@ public class Authorization {
         $("#authButton").click();
     }
 
-
     public void checkResultWithNotCorrectEmail() {
         $("#authButton").click();
-        $("#loginEmail").shouldHave(Condition.text("Неверный E-Mail или пароль"));
+        $("#invalidEmailPassword").shouldHave(Condition.text("Неверный E-Mail или пароль"));
     }
 
     public void checkResultWithEmptyEmail() {
         $("#authButton").click();
-        $("#loginEmail").shouldHave(Condition.text("Неверный формат E-Mail"));
+        $("#emailFormatError").shouldHave(Condition.text("Неверный формат E-Mail"));
     }
 }

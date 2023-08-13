@@ -46,19 +46,16 @@ public class FillingForm {
         return this;
     }
 
-    public FillingForm checkDataAdded() {
+    public void checkDataAdded() {
         $(".uk-modal-content").shouldHave(text("Данные добавлены"));
-        return this;
     }
 
-    public FillingForm checkNameFieldBlank() {
+    public void checkNameFieldBlank() {
         $("#blankNameError").shouldHave(text("Поле имя не может быть пустым"));
-        return this;
     }
 
-    public FillingForm checkEmailFormatError() {
+    public void checkEmailFormatError() {
         $("#emailFormatError").shouldHave(text("Неверный формат E-mail"));
-        return this;
     }
 }
 

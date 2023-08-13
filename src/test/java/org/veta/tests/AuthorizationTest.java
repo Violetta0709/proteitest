@@ -14,7 +14,7 @@ import static org.veta.tests.testdata.TestData.password;
 public class AuthorizationTest extends TestBase {
 
     Authorization auth = new Authorization();
-    FillingForm fillingForm = new FillingForm();
+    FillingForm filling = new FillingForm();
 
     @Test
     @Owner("V.Yuziykhovich")
@@ -24,7 +24,7 @@ public class AuthorizationTest extends TestBase {
                 .setEmail(auth.getCorrectEmail())
                 .setPassword(auth.getCorrectPassword())
                 .clickSubmit();
-        fillingForm.confirmSuccessAuth();
+        filling.confirmSuccessAuth();
     }
 
     @Test
@@ -47,7 +47,7 @@ public class AuthorizationTest extends TestBase {
                 .checkResultWithEmptyEmail();
     }
 
-    @ParameterizedTest
+    @ParameterizedTest(name = "Unsuccessfull authorization test")
     @CsvSource(value = {
             "xxx@mail.ru , cvbny678!",
             "polgthoil@bk.ru, %$&KOL",
@@ -57,11 +57,10 @@ public class AuthorizationTest extends TestBase {
             "pricrtu@gmail.com, %$&KOL",
             "lkhnmu@yandex.ru, 798*fgt"
     })
-
-    public void authTest(String emailResource, String passwordResource) {
+    public void authTest(String emailSource, String passwordSource) {
         auth.openPage()
-                .setEmail(emailResource)
-                .setPassword(passwordResource)
+                .setEmail(emailSource)
+                .setPassword(passwordSource)
                 .checkResultWithNotCorrectEmail();
     }
 }
