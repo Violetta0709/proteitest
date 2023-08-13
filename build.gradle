@@ -1,0 +1,48 @@
+plugins {
+    id 'java-library'
+    id 'io.qameta.allure' version '2.11.0'
+    id "io.freefair.lombok" version "6.0.0-m2"
+}
+
+group 'org.veta'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.19.0",
+    assertJVersion = "3.23.1",
+    slf4jVersion = "2.0.6"
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation(
+            //"com.fasterxml.jackson.core:jackson-databind:2.14.1",
+            "org.assertj:assertj-core:3.23.1",
+            "org.junit.jupiter:junit-jupiter:5.9.3",
+            //"org.slf4j:slf4j-simple: $slf4jVersion",
+            "com.codeborne:selenide:6.15.0",
+            "com.github.javafaker:javafaker:1.0.2",
+            "io.qameta.allure:allure-selenide:$allureVersion"
+    )
+}
+
+test {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+
+}
