@@ -62,7 +62,7 @@ public class CheckingFormTest extends TestBase {
             "wetur@gmail.com,      ",
 
     })
-    void checkFilledFormInvalidErrorTest(String emailSource, String nameSource) {
+    void checkFilledFormInvalidNameTest(String emailSource, String nameSource) {
         auth.openPage()
                 .setEmail(auth.getCorrectEmail())
                 .setPassword(auth.getCorrectPassword())

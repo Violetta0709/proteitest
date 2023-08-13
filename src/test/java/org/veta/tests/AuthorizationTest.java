@@ -55,7 +55,7 @@ public class AuthorizationTest extends TestBase {
             "wetur@rambler.ru, lk%opdFGH!",
             "lkhnmu@yandex.ru, 798*fgt"
     })
-    public void authTest(String emailSource, String passwordSource) {
+    void authTest(String emailSource, String passwordSource) {
         auth.openPage()
                 .setEmail(emailSource)
                 .setPassword(passwordSource)
