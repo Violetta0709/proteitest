@@ -27,8 +27,8 @@ public class CheckingFormTest extends TestBase {
         filling.fillEmail(email)
                 .fillName(name)
                 .selectGender()
-                .selectOptionsFirst()
-                .selectOptinsSecond()
+                .checkOptionsFirst()
+                .checkOptinsSecond()
                 .submitData()
                 .checkTableFilled()
                 .checkDataAdded();
@@ -50,8 +50,8 @@ public class CheckingFormTest extends TestBase {
         filling.fillEmail(emailSource)
                 .fillName(nameSource)
                 .selectGender()
-                .selectOptionsFirst()
-                .selectOptinsSecond()
+                .checkOptionsFirst()
+                .checkOptinsSecond()
                 .submitData()
                 .checkEmailFormatError();
     }
@@ -74,8 +74,8 @@ public class CheckingFormTest extends TestBase {
         filling.fillEmail(emailSource)
                 .fillName(nameSource)
                 .selectGender()
-                .selectOptionsFirst()
-                .selectOptinsSecond()
+                .checkOptionsFirst()
+                .checkOptinsSecond()
                 .submitData()
                 .checkNameFieldBlank();
     }

@@ -1,5 +1,7 @@
 package org.veta.pages;
 
+import com.codeborne.selenide.CollectionCondition;
+
 import static com.codeborne.selenide.Condition.empty;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
@@ -26,13 +28,19 @@ public class FillingForm {
         return this;
     }
 
-    public FillingForm selectOptionsFirst() {
-        $$("[type=checkbox]").first().click();
+    public FillingForm checkOptionsFirst() {
+        $$("input[type='checkbox']")
+                .shouldHave(CollectionCondition.size(2))
+                .first()
+                .shouldHave(text("Вариант 1.1"));
         return this;
     }
 
-    public FillingForm selectOptinsSecond() {
-        $$("[type=radio]").first().click();
+    public FillingForm checkOptinsSecond() {
+        $$("input[type='radio']")
+                .shouldHave(CollectionCondition.size(3))
+                .first()
+                .shouldHave(text("Вариан 2.1"));
         return this;
     }
 
