@@ -9,6 +9,6 @@ public class TestData {
     public static String
             email = faker.internet().emailAddress(),
             password = faker.internet().password(),
-            name = faker.name().fullName(),
-            filePath = "qa-test/3.pdf";
+            name = faker.name().fullName();
+
 }

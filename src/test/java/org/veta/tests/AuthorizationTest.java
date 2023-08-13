@@ -3,6 +3,8 @@ package org.veta.tests;
 import io.qameta.allure.Owner;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 import org.veta.pages.Authorization;
 import org.veta.pages.FillingForm;
 
@@ -18,7 +20,8 @@ public class AuthorizationTest extends TestBase {
     @Owner("V.Yuziykhovich")
     @DisplayName("Successfull authorization")
     void successAuthTest() {
-        auth.setEmail(auth.getCorrectEmail())
+        auth.openPage()
+                .setEmail(auth.getCorrectEmail())
                 .setPassword(auth.getCorrectPassword())
                 .clickSubmit();
         fillingForm.confirmSuccessAuth();
@@ -26,19 +29,39 @@ public class AuthorizationTest extends TestBase {
 
     @Test
     @Owner("V.Yuzykhovich")
-    @DisplayName("Unsuccessfull authorization with empty email field")
+    @DisplayName("Unsuccessfull authorization with incorrect email and password")
     void unsuccessAuthTest() {
-        auth.setEmail(email)
+        auth.openPage()
+                .setEmail(email)
                 .setPassword(password)
-                .checkResultWithEmptyEmail();
+                .checkResultWithNotCorrectEmail();
     }
 
     @Test
     @Owner("V.Yuzykhovich")
-    @DisplayName("Unsuccessfull authorization with incorrect email and password")
+    @DisplayName("Unsuccessfull authorization with blank email field")
     void unsuccessAuthTestWithRandomEmail() {
-        auth.setEmail(" ")
+        auth.openPage()
+                .setEmail(" ")
                 .setPassword(password)
+                .checkResultWithEmptyEmail();
+    }
+
+    @ParameterizedTest
+    @CsvSource(value = {
+            "xxx@mail.ru , cvbny678!",
+            "polgthoil@bk.ru, %$&KOL",
+            "plknoil@gmail.com, #Plkjh",
+            "biuolty@mail.com, Bnmth56",
+            "wetur@rambler.ru, lkopdFGH!",
+            "pricrtu@gmail.com, %$&KOL",
+            "lkhnmu@yandex.ru, 798*fgt"
+    })
+
+    public void authTest(String emailResource, String passwordResource) {
+        auth.openPage()
+                .setEmail(emailResource)
+                .setPassword(passwordResource)
                 .checkResultWithNotCorrectEmail();
     }
 }

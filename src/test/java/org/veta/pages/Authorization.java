@@ -3,6 +3,7 @@ package org.veta.pages;
 import com.codeborne.selenide.Condition;
 import lombok.Data;
 
+import static com.codeborne.selenide.Configuration.baseUrl;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
@@ -12,10 +13,10 @@ public class Authorization {
     private String correctEmail = "test@protei.ru";
     private String correctPassword = "test";
 
- //   public Authorization openPage() {
-    //    open("qa-test/qa-test.html");
-    //    return this;
-   // }
+    public Authorization openPage() {
+        open("/qa-test.html");
+        return this;
+    }
 
     public Authorization setEmail(String value) {
         $("#loginEmail").setValue(value);
@@ -27,22 +28,18 @@ public class Authorization {
         return this;
     }
 
-    public Authorization clickSubmit() {
+    public void clickSubmit() {
         $("#authButton").click();
-        $("#loginEmail").shouldHave(Condition.text("Неверный E-Mail или пароль"));
-        return this;
     }
 
 
-    public Authorization checkResultWithNotCorrectEmail() {
+    public void checkResultWithNotCorrectEmail() {
         $("#authButton").click();
         $("#loginEmail").shouldHave(Condition.text("Неверный E-Mail или пароль"));
-        return this;
     }
 
-    public Authorization checkResultWithEmptyEmail() {
+    public void checkResultWithEmptyEmail() {
         $("#authButton").click();
         $("#loginEmail").shouldHave(Condition.text("Неверный формат E-Mail"));
-        return this;
     }
 }
