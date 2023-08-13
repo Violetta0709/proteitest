@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class FillingForm {
 
-    public void confirmSuccessAuth() {
+    public void checkSuccessAuth() {
         $("#dataSend").shouldHave(text("Добавить"));
     }
 
@@ -24,7 +24,7 @@ public class FillingForm {
     }
 
     public FillingForm selectGender() {
-        $("#dataGender").selectOptionByValue("мужской");
+        $("#dataGender").selectOptionByValue("Мужской");
         return this;
     }
 
@@ -50,7 +50,7 @@ public class FillingForm {
     }
 
     public FillingForm checkTableFilled() {
-        $("#dataTable").shouldNotBe(empty);
+        $$("#dataTable tbody tr").shouldHave(CollectionCondition.sizeGreaterThan(1));
         return this;
     }
 
@@ -63,7 +63,7 @@ public class FillingForm {
     }
 
     public void checkEmailFormatError() {
-        $("#emailFormatError").shouldHave(text("Неверный формат E-mail"));
+        $("#emailFormatError").shouldHave(text("Неверный формат E-Mail"));
     }
 }
 

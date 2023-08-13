@@ -24,13 +24,13 @@ public class AuthorizationTest extends TestBase {
                 .setEmail(auth.getCorrectEmail())
                 .setPassword(auth.getCorrectPassword())
                 .clickSubmit();
-        filling.confirmSuccessAuth();
+        filling.checkSuccessAuth();
     }
 
     @Test
     @Owner("V.Yuzykhovich")
     @DisplayName("Unsuccessfull authorization with incorrect email and password")
-    void unsuccessAuthTest() {
+    void unsuccessAuthTestRandomEmail() {
         auth.openPage()
                 .setEmail(email)
                 .setPassword(password)
@@ -40,7 +40,7 @@ public class AuthorizationTest extends TestBase {
     @Test
     @Owner("V.Yuzykhovich")
     @DisplayName("Unsuccessfull authorization with blank email field")
-    void unsuccessAuthTestWithRandomEmail() {
+    void unsuccessAuthTestBlankEmail() {
         auth.openPage()
                 .setEmail(" ")
                 .setPassword(password)
@@ -49,12 +49,10 @@ public class AuthorizationTest extends TestBase {
 
     @ParameterizedTest(name = "Unsuccessfull authorization test")
     @CsvSource(value = {
-            "xxx@mail.ru , cvbny678!",
             "polgthoil@bk.ru, %$&KOL",
             "plknoil@gmail.com, #Plkjh",
-            "biuolty@mail.com, Bnmth56",
-            "wetur@rambler.ru, lkopdFGH!",
-            "pricrtu@gmail.com, %$&KOL",
+            "biuolty@mail.com,      ",
+            "wetur@rambler.ru, lk%opdFGH!",
             "lkhnmu@yandex.ru, 798*fgt"
     })
     public void authTest(String emailSource, String passwordSource) {

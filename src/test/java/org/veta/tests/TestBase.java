@@ -10,7 +10,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class TestBase {
     @BeforeAll
-
     static void configure() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
@@ -27,6 +26,5 @@ public class TestBase {
         Attach.screenshotAs("Last screenshot");
         Attach.pageSource();
         Attach.browserConsoleLogs();
-        Attach.addVideo();
     }
 }

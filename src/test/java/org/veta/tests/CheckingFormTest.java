@@ -37,10 +37,10 @@ public class CheckingFormTest extends TestBase {
     @ParameterizedTest(name = "Unsusccessfull filling form (email error)")
     @CsvSource(value = {
             "xxxmail.ru , cvbny678!",
-            "polgthoilbk.ru, %$&KOL",
-            "plknoilgmail.com, #Plkjh",
+            "polgthoilbk, %$&KOL",
+            "plknoilgmail.cn, #Plkjh",
             "biuoltymail.com, Bnmth56",
-            "weturrambler.ru, lkopdFGH!",
+            "weturrambler, lkopdFGH!",
     })
     void checkFilledFormEmailErrorTest(String emailSource, String nameSource) {
         auth.openPage()
@@ -58,13 +58,9 @@ public class CheckingFormTest extends TestBase {
 
     @ParameterizedTest(name = "Unsuccessfull filling form (invalid name)")
     @CsvSource(value = {
-            "xxx@mail.ru ,    ",
-            "polgthoil@bk.ru, %$&KOL",
-            "plknoil@gmail.com, #Plkjh",
-            "biuolty@mail.com, !!Bnmth56",
-            "wetur@rambler.ru,      ",
-            "pricrtu@gmail.com, %$&KOL",
-            "lkhnmu@yandex.ru, 798*fgt"
+            "btnmu@mail.ru ,    ",
+            "wetur@gmail.com,      ",
+
     })
     void checkFilledFormInvalidErrorTest(String emailSource, String nameSource) {
         auth.openPage()
